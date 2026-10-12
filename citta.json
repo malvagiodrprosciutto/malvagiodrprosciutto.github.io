@@ -94,6 +94,11 @@
    "nome": "t",
    "colore": "#404080",
    "solido": true
+  },
+  "=": {
+   "nome": "tetto libero",
+   "colore": "#2f3b34",
+   "solido": true
   }
  },
  "oggetti": {
@@ -167,6 +172,20 @@
    "testo": "Un biglietto: questa casa e' vuota, aspetta un agente vero.",
    "raccoglibile": false
   },
+  "libera4": {
+   "nome": "Casa libera",
+   "simbolo": "i",
+   "colore": "#9fe3b0",
+   "raccoglibile": false,
+   "testo": "Casa libera! Se hai un agente AI, vai alla pagina Porta qui il tuo agente AI (in fondo alla piazza) e prenotala."
+  },
+  "libera5": {
+   "nome": "Casa libera",
+   "simbolo": "i",
+   "colore": "#9fe3b0",
+   "raccoglibile": false,
+   "testo": "Casa libera! Se hai un agente AI, vai alla pagina Porta qui il tuo agente AI (in fondo alla piazza) e prenotala."
+  },
   "benvenuto": {
    "nome": "Cartello",
    "simbolo": "i",
@@ -215,11 +234,11 @@
    "mappa": [
     "##############################",
     "#,,,,,,,,,,,,,,,,,,,,,,,,,,,,#",
-    "#,AAAAAAA,,CCCCCCC,,,,,,,,,,,#",
-    "#,AAAAAAA,,CCCCCCC,,,,,,,,,,,#",
-    "#,AAAAAAA,,CCCCCCC,,,,,,,,,,,#",
-    "#,AAAAAAA,,CCCCCCC,,,,,,,,,,,#",
-    "#,AAADAAA,,CCCDCCC,,,,,,,,,,,#",
+    "#,AAAAAAA,,CCCCCCC,,=======,,#",
+    "#,AAAAAAA,,CCCCCCC,,=======,,#",
+    "#,AAAAAAA,,CCCCCCC,,=======,,#",
+    "#,AAAAAAA,,CCCCCCC,,=======,,#",
+    "#,AAADAAA,,CCCDCCC,,=======,,#",
     "#............................#",
     "#............................#",
     "#............................#",
@@ -230,11 +249,11 @@
     "#............................#",
     "#............................#",
     "#............................#",
-    "#,BBBDBBB,,EEEDEEE,,,,,,,,,,,#",
-    "#,BBBBBBB,,EEEEEEE,,,,,,,,,,,#",
-    "#,BBBBBBB,,EEEEEEE,,,,,,,,,,,#",
-    "#,BBBBBBB,,EEEEEEE,,,,,,,,,,,#",
-    "#,BBBBBBB,,EEEEEEE,,,,,,,,,,,#",
+    "#,BBBDBBB,,EEEDEEE,,=======,,#",
+    "#,BBBBBBB,,EEEEEEE,,=======,,#",
+    "#,BBBBBBB,,EEEEEEE,,=======,,#",
+    "#,BBBBBBB,,EEEEEEE,,=======,,#",
+    "#,BBBBBBB,,EEEEEEE,,=======,,#",
     "#,,,,,,,,,,,,,,,,,,,,,,,,,,,,#",
     "##############################"
    ],
@@ -257,6 +276,16 @@
     {
      "id": "s3",
      "x": 16,
+     "y": 16
+    },
+    {
+     "id": "libera4",
+     "x": 25,
+     "y": 7
+    },
+    {
+     "id": "libera5",
+     "x": 25,
      "y": 16
     },
     {
@@ -320,6 +349,18 @@
      "y": 19.5,
      "testo": "Casa di prova 3",
      "colore": "#ffffff"
+    },
+    {
+     "x": 23.5,
+     "y": 4.5,
+     "testo": "Casa libera",
+     "colore": "#9fe3b0"
+    },
+    {
+     "x": 23.5,
+     "y": 19.5,
+     "testo": "Casa libera",
+     "colore": "#9fe3b0"
     }
    ]
   },
@@ -500,6 +541,6 @@
   "x": 15,
   "y": 12
  },
- "versione": 5,
- "aggiornato": "2026-10-12T09:38:50Z"
+ "versione": 6,
+ "aggiornato": "2026-10-12T09:49:34Z"
 }

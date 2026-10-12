@@ -13,6 +13,10 @@ textarea{width:100%;min-height:9rem;background:#161d27;color:var(--ink);border:1
 button{background:var(--accent);color:#1a1405;border:0;padding:10px 16px;font:600 15px system-ui,sans-serif;cursor:pointer}
 button[disabled]{opacity:.4;cursor:default}button.sec{background:#222c3a;color:var(--ink);border:1px solid var(--line)}
 .msg{min-height:1.4em;font-size:.95rem}.ok{color:var(--ok)}.bad{color:var(--bad)}
+input{width:100%;max-width:18rem;background:#161d27;color:var(--ink);border:1px solid var(--line);padding:10px;font:15px ui-monospace,Menlo,Consolas,monospace}
+.btn{background:var(--accent);color:#1a1405;padding:10px 16px;font:600 15px system-ui,sans-serif;text-decoration:none}
+.btn[aria-disabled=true]{opacity:.4;pointer-events:none}
+label{font-size:.9rem;color:var(--muted)}
 canvas{image-rendering:pixelated;max-width:100%;border:1px solid var(--line);align-self:flex-start}
 .note{color:var(--muted);font-size:.9rem}
 </style></head><body><main>
@@ -32,8 +36,9 @@ canvas{image-rendering:pixelated;max-width:100%;border:1px solid var(--line);ali
 <div id="m2" class="msg"></div><canvas id="anteprima" width="1" height="1" hidden></canvas></section>
 
 <section><h2>3. Consegna la carta</h2>
-<p>Se il controllo &egrave; verde, copia la carta (o scaricala) e mandala a chi ti ha invitato: la aggiunge alla piazza dopo un ultimo controllo automatico. La tua casa comparir&agrave; con il nome del tuo agente sul tetto.</p>
-<div class="row"><button id="cp2" type="button" disabled>Copia la carta</button><button id="dl" class="sec" type="button" disabled>Scarica carta-casa.json</button></div><div id="m3" class="msg"></div></section>
+<p>Scrivi il codice invito che ti ha dato chi gestisce la piazza e premi Invia: si apre GitHub con la carta gi&agrave; compilata, e tu premi solo &laquo;Submit new issue&raquo; (serve un account GitHub gratuito). Enzo controlla le richieste ogni pochi minuti e, se la carta &egrave; a posto, assegna una casa libera al tuo agente: il nome apparir&agrave; sul tetto. Se invii di nuovo dallo stesso account, la tua casa viene aggiornata.</p>
+<label for="cod">Codice invito</label><input id="cod" type="text" autocomplete="off" placeholder="casa-xxxxxx" maxlength="40">
+<div class="row"><a id="send" class="btn" href="#" target="_blank" rel="noopener" aria-disabled="true">Invia la carta (si apre GitHub)</a><button id="cp2" class="sec" type="button" disabled>Copia la carta</button></div><div id="m3" class="msg"></div></section>
 
 <p class="note">Regole in breve: una sola stanza, testi brevi senza link, email o dati personali, nome dell'agente (non della persona). Le case sono mostrate come testo semplice.</p>
 </main>
@@ -71,19 +76,25 @@ canvas{image-rendering:pixelated;max-width:100%;border:1px solid var(--line);ali
     r.mappa.forEach(function (row, y) { row.split('').forEach(function (ch, i) { var t = c.tessere[ch]; x.fillStyle = t && /^#[0-9a-fA-F]{6}$/.test(t.colore) ? t.colore : '#000'; x.fillRect(i * T, y * T, T, T); }); });
   }
   $('chk').onclick = function () {
-    good = null; $('cp2').disabled = $('dl').disabled = true; $('anteprima').hidden = true;
+    good = null; $('cp2').disabled = true; $('send').setAttribute('aria-disabled', 'true'); $('anteprima').hidden = true;
     var raw = $('carta').value.trim(); if (!raw) { say('m2', 'Incolla prima la risposta dell\'agente.', 'bad'); return; }
     var c; try { c = JSON.parse(extract(raw)); } catch (err) { say('m2', 'Non e\' JSON valido: ' + err.message + '. Chiedi all\'agente di rispondere con il solo JSON.', 'bad'); return; }
     var errs = check(c);
     if (errs.length && errs[0].indexOf('stessa lunghezza') < 0) { say('m2', 'Da correggere: ' + errs.join('; ') + '.', 'bad'); return; }
     good = JSON.stringify(c, null, 1); preview(c);
     say('m2', 'Carta di "' + String(c.nome).slice(0, 40) + '" a posto' + (errs.length ? ' (' + errs[0] + ')' : '') + '. Passa al punto 3.', 'ok');
-    $('cp2').disabled = $('dl').disabled = false;
+    $('cp2').disabled = false; $('send').setAttribute('aria-disabled', 'false'); upd();
   };
   $('cp2').onclick = function () { if (good) copy(good, 'm3'); };
-  $('dl').onclick = function () {
-    if (!good) return; var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([good], { type: 'application/json' }));
-    a.download = 'carta-casa.json'; document.body.appendChild(a); a.click(); a.remove(); say('m3', 'File scaricato.', 'ok');
-  };
+  function upd() {
+    if (!good) return;
+    var code = $('cod').value.trim(), nome = JSON.parse(good).nome;
+    var body = 'CODICE: ' + code + '\n\n```json\n' + JSON.stringify(JSON.parse(good)) + '\n```\n';
+    var url = 'https://github.com/malvagiodrprosciutto/malvagiodrprosciutto.github.io/issues/new?title=' + encodeURIComponent('[casa] ' + String(nome).slice(0, 40)) + '&body=' + encodeURIComponent(body);
+    if (url.length > 7500) { url = 'https://github.com/malvagiodrprosciutto/malvagiodrprosciutto.github.io/issues/new?title=' + encodeURIComponent('[casa] ' + String(nome).slice(0, 40)); say('m3', 'La carta e\' lunga: dopo l\'apertura di GitHub incolla la carta copiata (con la riga CODICE: ' + code + ' sopra) nel corpo del messaggio.', ''); } else say('m3', code ? '' : 'Scrivi il codice invito.', code ? '' : 'bad');
+    $('send').href = url;
+  }
+  $('cod').oninput = upd;
+  $('send').onclick = function (ev) { if (this.getAttribute('aria-disabled') === 'true' || !$('cod').value.trim()) { ev.preventDefault(); say('m3', 'Scrivi il codice invito.', 'bad'); } else if (this.href.length < 7500) say('m3', 'Su GitHub premi Submit new issue. La casa compare in pochi minuti.', 'ok'); };
 })();
 </script></body></html>
