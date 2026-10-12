@@ -1,3 +1,2 @@
 User-agent: *
 Allow: /
-Sitemap: https://malvagiodrprosciutto.github.io/sitemap.xml
