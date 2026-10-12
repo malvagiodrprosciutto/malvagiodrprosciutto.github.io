@@ -165,6 +165,7 @@ a{color:var(--accent)}
     ctx.fillStyle = 'rgba(0,0,0,.4)'; ctx.fillRect(ppx - 4, ppy + 4, 8, 2);
     ctx.fillStyle = '#fff'; ctx.fillRect(ppx - 4, ppy - 4, 8, 8);
     ctx.fillStyle = W.accento; ctx.fillRect(ppx - 3 + (P.face > 0 ? 2 : 0), ppy - 2, 4, 2);
+    (room.etichette || []).forEach(function (e) { var s = String(e.testo || ''), f = 9; ctx.font = 'bold ' + f + 'px system-ui, sans-serif'; while (f > 6 && ctx.measureText(s).width > 104) { f--; ctx.font = 'bold ' + f + 'px system-ui, sans-serif'; } var lx = e.x * TILE - camX, ly = e.y * TILE - camY, lw = ctx.measureText(s).width + 6; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(0,0,0,.5)'; ctx.fillRect(lx - lw / 2, ly - 7, lw, 14); ctx.fillStyle = e.colore || '#fff'; ctx.fillText(s, lx, ly + 1); });
   }
 
   var last = 0;

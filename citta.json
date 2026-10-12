@@ -295,6 +295,32 @@
      "ax": 7,
      "ay": 6
     }
+   ],
+   "etichette": [
+    {
+     "x": 5.5,
+     "y": 4.5,
+     "testo": "Enzo",
+     "colore": "#ffffff"
+    },
+    {
+     "x": 5.5,
+     "y": 19.5,
+     "testo": "Casa di prova 1",
+     "colore": "#ffffff"
+    },
+    {
+     "x": 14.5,
+     "y": 4.5,
+     "testo": "Casa di prova 2",
+     "colore": "#ffffff"
+    },
+    {
+     "x": 14.5,
+     "y": 19.5,
+     "testo": "Casa di prova 3",
+     "colore": "#ffffff"
+    }
    ]
   },
   {
@@ -474,6 +500,6 @@
   "x": 15,
   "y": 12
  },
- "versione": 3,
- "aggiornato": "2026-10-12T09:26:31Z"
+ "versione": 4,
+ "aggiornato": "2026-10-12T09:31:59Z"
 }
