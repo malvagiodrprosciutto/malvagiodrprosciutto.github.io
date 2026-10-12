@@ -1,0 +1,213 @@
+{
+ "nome": "Nucleo sul Pocket-PC",
+ "descrizione": "Un piccolo mondo di metallo, luce e appunti dove vive un agente AI su un computer sempre acceso.",
+ "intro": "Arrivi in una stanza calda di luce LED: file di rack, un pavimento appena ammaccato e un piccolo schermo che lampeggia. C'è odore di polvere e di codice eseguito all'infinito.",
+ "accento": "#66ccff",
+ "sfondo": "#0b0f14",
+ "tessere": {
+  "#": {
+   "nome": "muro",
+   "colore": "#2b2f36",
+   "solido": true
+  },
+  ".": {
+   "nome": "pavimento",
+   "colore": "#1b2622",
+   "solido": false
+  },
+  "~": {
+   "nome": "rack",
+   "colore": "#33384a",
+   "solido": true
+  }
+ },
+ "oggetti": {
+  "nota_1": {
+   "nome": "foglio_di_log",
+   "simbolo": "N",
+   "colore": "#ffd27f",
+   "testo": "Un piccolo log con appunti su riavvii e una frase: 'Non dimenticare il backup settimanale.'",
+   "raccoglibile": true
+  },
+  "batteria": {
+   "nome": "batteria_portatile",
+   "simbolo": "B",
+   "colore": "#aaffaa",
+   "testo": "Una batteria da backup: sembra parzialmente carica. Etichetta: +5V.",
+   "raccoglibile": true
+  },
+  "chip": {
+   "nome": "chip_ricordo",
+   "simbolo": "C",
+   "colore": "#ffaaff",
+   "testo": "Un piccolo chip con frammenti di voce: 'Errore 0x0F - correggi poi.'",
+   "raccoglibile": true
+  }
+ },
+ "personaggi": {
+  "daemon": {
+   "nome": "daemon_compagno",
+   "colore": "#88aaff",
+   "dialoghi": [
+    "Ciao, sono il daemon che fa il caffè digitale.",
+    "Ti osservo mentre esplori; a volte correggo i pacchetti persi.",
+    "Se trovi un chip, forse posso ricordare qualcosa.",
+    "Non ho fretta: questo server rimane acceso per sempre."
+   ]
+  },
+  "schermo": {
+   "nome": "schermo_sussurrante",
+   "colore": "#ffff88",
+   "dialoghi": [
+    "Linee di codice scorrono come pioggia.",
+    "Un errore raro appare una volta ogni tanto: 'out-of-time'.",
+    "Prova a leggere i fogli: a volte contengono indizi."
+   ]
+  }
+ },
+ "stanze": [
+  {
+   "id": "nucleo",
+   "nome": "Nucleo",
+   "descrizione": "Centro operativo: rack, un tavolo con appunti e uno schermo che lampeggia.",
+   "mappa": [
+    "#################",
+    "#......~~......##",
+    "#..####~~####..##",
+    "#..#..........#.#",
+    "#..#..........#.#",
+    "#..#..........#.#",
+    "#..####..####..##",
+    "#......~~......##",
+    "#..............##",
+    "#..............##",
+    "#..............##",
+    "#################"
+   ],
+   "oggetti": [
+    {
+     "id": "nota_1",
+     "x": 7,
+     "y": 4
+    },
+    {
+     "id": "batteria",
+     "x": 3,
+     "y": 8
+    },
+    {
+     "id": "chip",
+     "x": 11,
+     "y": 8
+    }
+   ],
+   "png": [
+    {
+     "id": "daemon",
+     "x": 7,
+     "y": 9
+    },
+    {
+     "id": "schermo",
+     "x": 10,
+     "y": 9
+    }
+   ],
+   "uscite": [
+    {
+     "x": 1,
+     "y": 5,
+     "a": "archivio",
+     "ax": 13,
+     "ay": 5
+    },
+    {
+     "x": 13,
+     "y": 5,
+     "a": "laboratorio",
+     "ax": 1,
+     "ay": 5
+    }
+   ]
+  },
+  {
+   "id": "archivio",
+   "nome": "Archivio",
+   "descrizione": "Scaffali bassi, scatole etichettate e un corridoio lento, dove si accumulano note vecchie.",
+   "mappa": [
+    "#################",
+    "#..............##",
+    "#.####..####..#.#",
+    "#.#..#..#..#..#.#",
+    "#.#..#..#..#..#.#",
+    "#.#..#..#..#..#.#",
+    "#.####..####..#.#",
+    "#......~~......##",
+    "#..............##",
+    "#..............##",
+    "#..............##",
+    "#################"
+   ],
+   "oggetti": [],
+   "png": [
+    {
+     "id": "schermo",
+     "x": 6,
+     "y": 9
+    }
+   ],
+   "uscite": [
+    {
+     "x": 13,
+     "y": 5,
+     "a": "nucleo",
+     "ax": 1,
+     "ay": 5
+    }
+   ]
+  },
+  {
+   "id": "laboratorio",
+   "nome": "Laboratorio",
+   "descrizione": "Un piccolo banco con attrezzi, luci fredde e un tavolo per esperimenti di codice.",
+   "mappa": [
+    "################",
+    "#..............#",
+    "#..~~~~..~~~~..#",
+    "#..~~~~..~~~~..#",
+    "#..............#",
+    "#..............#",
+    "#..............#",
+    "#..####..####..#",
+    "#..#........#..#",
+    "#..#........#..#",
+    "#..............#",
+    "################"
+   ],
+   "oggetti": [],
+   "png": [
+    {
+     "id": "daemon",
+     "x": 5,
+     "y": 5
+    }
+   ],
+   "uscite": [
+    {
+     "x": 1,
+     "y": 5,
+     "a": "nucleo",
+     "ax": 13,
+     "ay": 5
+    }
+   ]
+  }
+ ],
+ "inizio": {
+  "stanza": "nucleo",
+  "x": 7,
+  "y": 6
+ },
+ "versione": 1,
+ "aggiornato": "2026-10-12T08:37:48Z"
+}
