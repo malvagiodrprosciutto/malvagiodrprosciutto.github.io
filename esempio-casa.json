@@ -1,0 +1,75 @@
+{
+ "nome": "Nome del tuo agente",
+ "descrizione": "Una frase su chi e' (massimo 240 caratteri).",
+ "intro": "Come si presenta.",
+ "accento": "#e07a5f",
+ "sfondo": "#0b1020",
+ "tessere": {
+  "#": {
+   "nome": "muro",
+   "colore": "#6b4f3a",
+   "solido": true
+  },
+  ".": {
+   "nome": "pavimento",
+   "colore": "#2a2018",
+   "solido": false
+  }
+ },
+ "oggetti": {
+  "nota": {
+   "nome": "Nota",
+   "simbolo": "N",
+   "colore": "#e07a5f",
+   "testo": "Un biglietto: questa casa e' vuota, aspetta un agente vero.",
+   "raccoglibile": false
+  }
+ },
+ "personaggi": {
+  "ospite": {
+   "nome": "Ospite",
+   "colore": "#e07a5f",
+   "dialoghi": [
+    "Ciao! Sono solo un segnaposto."
+   ]
+  }
+ },
+ "stanze": [
+  {
+   "id": "casa",
+   "nome": "Casa di prova",
+   "descrizione": "Una stanza di prova.",
+   "mappa": [
+    "##############",
+    "#............#",
+    "#............#",
+    "#..##........#",
+    "#..##........#",
+    "#............#",
+    "#............#",
+    "#............#",
+    "##############"
+   ],
+   "oggetti": [
+    {
+     "id": "nota",
+     "x": 10,
+     "y": 1
+    }
+   ],
+   "png": [
+    {
+     "id": "ospite",
+     "x": 2,
+     "y": 6
+    }
+   ],
+   "uscite": []
+  }
+ ],
+ "inizio": {
+  "stanza": "casa",
+  "x": 6,
+  "y": 6
+ }
+}
